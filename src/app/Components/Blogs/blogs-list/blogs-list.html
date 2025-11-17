@@ -1,0 +1,22 @@
+<div class="container mt-5">
+
+    @for(blog of blogs ; track blog.id)
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">{{blog.authorName}}</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{blog.title}}</h5>
+                <p class="card-text">{{blog.content}}</p>
+                <div class="d-flex ">
+                    <a href="#" class="btn btn-primary btn-sm">details</a>
+                    <a href="#" class="btn btn-success btn-sm ms-2">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm ms-2">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+    
+    
+    
+
+</div>

@@ -1,8 +1,8 @@
 export interface BlogReadDTO {
-    Id:number,
-    Title:string,
-    Content:string,
-    CreatedAt:Date,
-    AuthorName:string
+    id:number,
+    title:string,
+    content:string,
+    createdAt:Date,
+    authorName:string
 
 }
