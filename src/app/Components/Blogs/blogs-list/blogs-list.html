@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <div class="d-grid">
+        <a class=" btn btn-success" routerLink="/blog-create">Add New Blog</a>
+    </div>
+    @for(blog of blogs ; track blog.id)
+    {
+        <div class="card mt-3">
+            <h5 class="card-header">{{blog.authorName}}</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{blog.title}}</h5>
+                <p class="card-text">{{blog.content}}</p>
+                <h6 class="card-text text-italic">{{blog.createdAt | date :'mediumDate'}}</h6>
+                <h6 class="card-text text-italic">{{blog.createdAt | date :'shortTime'}}</h6>
+                <div class="d-flex ">
+                    <a (click)="goToDetails(blog.id)" class="btn btn-primary btn-sm">Details</a>
+                    <a (click)="goToEdit(blog.id)" class="btn btn-success btn-sm ms-2">Edit</a>
+                    <a (click)="goToDelet(blog.id)" class="btn btn-danger btn-sm ms-2">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+    
+    
+    
+
+</div>

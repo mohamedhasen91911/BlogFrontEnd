@@ -1,0 +1,21 @@
+<div class="container mt-5">
+
+        <div class="card mt-3">
+            <h5 class="card-header">Author: {{blog.authorName}}</h5>
+            <div class="card-body">
+                <h5 class="card-title">Title : {{blog.title}}</h5>
+                <p class="card-text">Content : {{blog.content}}</p>
+                <h6 class="card-text text-italic">{{blog.createdAt | date :'mediumDate'}}</h6>
+                <h6 class="card-text text-italic">{{blog.createdAt | date :'shortTime'}}</h6>
+                <div class="d-flex ">
+                    <a (click)="goToEdit(blog.id)" class="btn btn-success btn-sm ms-2">Edit</a>
+                    <a href="#" class="btn btn-danger btn-sm ms-2">Delete</a>
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+
+</div>

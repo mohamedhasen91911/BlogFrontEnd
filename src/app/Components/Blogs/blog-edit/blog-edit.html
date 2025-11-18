@@ -1,0 +1,54 @@
+
+<div class="container" >
+    <div class="d-flex vh-100 justify-content-center align-items-center">
+        <form [formGroup]="blogForm" (submit)="createNewBlog()">
+
+          <div class="mb-3 mt-3">
+            <label for="Title" class="form-label">Title:</label>
+            <input type="text" class="form-control" id="Title" placeholder="Enter Title" name="title" formControlName="title">
+            @if(getTitle()?.touched && getTitle()?.invalid)
+            {
+                <div class="text-danger">
+                    @if(getTitle()?.errors?.['required'])
+                    {
+                        <p>This Filed Is Required</p>
+                    }@if(getTitle()?.errors?.['minlength'])
+                    {
+                        <p>Min Length is 3</p>
+                    }
+                    @if(getTitle()?.errors?.['maxlength'])
+                    {
+                        <p>Max Length is 150</p>
+                    }
+                </div>
+            }
+          </div>
+          
+
+          <div class="mb-3 mt-3">
+            <label for="Content" class="form-label">Content:</label>
+            <input type="text" class="form-control" id="Content" placeholder="Enter Content" name="content" formControlName="content">
+            @if(getContent()?.invalid&&getContent()?.touched)
+            {
+                <div class="text-danger">
+                    @if(getContent()?.errors?.['required'])
+                    {
+                        <p>This Filed Is Requied</p>
+                    }
+                    @if(getContent()?.errors?.['minlength'])
+                    {
+                        <p>Min Length is 0</p>
+                    }
+                    @if(getContent()?.errors?.['maxlength'])
+                    {
+                        <p>Max Length is 265</p>
+                    }
+                </div>
+            }
+          </div>
+          <div class="d-grid">
+              <button type="submit" class="btn btn-success" [disabled]="blogForm.invalid" >Edit</button>
+          </div>
+        </form>
+    </div>
+</div>
