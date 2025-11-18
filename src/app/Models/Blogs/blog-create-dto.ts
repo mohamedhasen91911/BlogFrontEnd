@@ -1,6 +1,6 @@
 export interface BlogCreateDTO {
 
-    Title:string,
-    Content:string,
+    title:string,
+    content:string,
 
 }
