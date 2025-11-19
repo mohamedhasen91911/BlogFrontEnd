@@ -1,2 +1,143 @@
-<p>register-component works!</p>
-<h2>Register</h2>
+{{registerForm.value | json}}
+<div class="container">
+    <div class="d-flex vh-100 align-items-center justify-content-center">
+        <form [formGroup]="registerForm" (submit)="register()">
+
+
+            <div class="mb-3">
+                <label for="Firstname" class="form-label">FirstName</label>
+                <input type="text" class="form-control" id="Firstname" name="firstname" formControlName="firstname">
+                @if(getFirstName()?.invalid && getFirstName()?.touched)
+                {
+                    <div class="text-danger">
+                        @if(getFirstName()?.errors?.['required'])
+                        {
+                            <p>This Filed Is Required</p>
+                        }
+                        @if(getFirstName()?.errors?.['minlength'])
+                        {
+                            <p>Min Length Must Be More Than 3</p>
+                        }
+                        @if(getFirstName()?.errors?.['maxlength'])
+                        {
+                            <p>Max Length Must Be Less Than 50</p>
+                        }
+                    </div>
+                }
+            </div>
+
+
+            <div class="mb-3">
+                <label for="LastName" class="form-label">LastName</label>
+                <input type="text" class="form-control" id="LastName" name="lastname" formControlName="lastname">
+                @if(getLastName()?.invalid && getLastName()?.touched)
+                {
+                    <div class="text-danger">
+                        @if(getLastName()?.errors?.['required'])
+                        {
+                            <p>This Filed Is Required</p>
+                        }
+                        @if(getLastName()?.errors?.['minlength'])
+                        {
+                            <p>Min Length Must Be More Than 3</p>
+                        }
+                        @if(getLastName()?.errors?.['maxlength'])
+                        {
+                            <p>Max Length Must Be Less Than 50</p>
+                        }
+                    </div>
+                }
+            </div>
+
+
+            <div class="mb-3">
+                <label for="Username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="Username" name="username" formControlName="username">
+                @if(getuserName()?.invalid && getuserName()?.touched)
+                {
+                    <div class="text-danger">
+                        @if(getuserName()?.errors?.['required'])
+                        {
+                            <p>This Filed Is Required</p>
+                        }
+                        @if(getuserName()?.errors?.['minlength'])
+                        {
+                            <p>Min Length Must Be More Than 3</p>
+                        }
+                        @if(getuserName()?.errors?.['maxlength'])
+                        {
+                            <p>Max Length Must Be Less Than 50</p>
+                        }
+                    </div>
+                }
+            </div>
+
+          
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" formControlName="email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+            @if(getEmail()?.invalid && getEmail()?.touched)
+            {
+                <div class="text-danger">
+                    
+                    @if(getEmail()?.errors?.['required'])
+                    {
+                        <p>This Filed Is Required</p>
+                    }
+                    @if(getEmail()?.errors?.['email'])
+                    {
+                        <p>This Is Not A Valid Form Of Email</p>
+                    }
+                    @if(getEmail()?.errors?.['minlength'])
+                    {
+                        <p>Min Length Must Be More Than 3</p>
+                    }
+                    @if(getEmail()?.errors?.['maxlength'])
+                    {
+                        <p>Max Length Must Be Less Than 50</p>
+                    }
+                </div>
+            }
+
+          </div>
+
+
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" formControlName="password">
+            @if(getPassword()?.invalid && getPassword()?.touched)
+            {
+                <div class="text-danger">
+                    @if(getPassword()?.errors?.['required'])
+                    {
+                        <p>This Filed Is Required</p>
+                    }
+                    @if(getPassword()?.errors?.['minlength'])
+                    {
+                        <p>Min Length Must Be More Than 8</p>
+                    }
+                    @if(getPassword()?.errors?.['maxlength'])
+                    {
+                        <p>Max Length Must Be Less Than 50</p>
+                    }
+                </div>
+            }
+          </div>
+
+
+
+          <div class="mb-3 ">
+            Do You Have Account ? <a routerLink="/login">Login</a>
+          </div>
+          <div class="d-grid">
+              <button class="btn btn-primary" [disabled]="registerForm.invalid">Create Account</button>
+          </div>
+        </form>
+    </div>
+</div>
