@@ -1,2 +1,63 @@
-<p>login-component works!</p>
-<h2>Login</h2>
+{{loginForm.value | json}}
+<div class="container">
+    <div class="d-flex vh-100 align-items-center justify-content-center">
+        <form [formGroup]="loginForm" (submit)="login()">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" formControlName="email">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+            @if(getEmail()?.invalid && getEmail()?.touched)
+            {
+                <div class="text-danger">
+                    
+                    @if(getEmail()?.errors?.['required'])
+                    {
+                        <p>This Filed Is Required</p>
+                    }
+                    @if(getEmail()?.errors?.['email'])
+                    {
+                        <p>This Is Not A Valid Form Of Email</p>
+                    }
+                    @if(getEmail()?.errors?.['minlength'])
+                    {
+                        <p>Min Length Must Be More Than 1</p>
+                    }
+                    @if(getEmail()?.errors?.['maxlength'])
+                    {
+                        <p>Max Length Must Be Less Than 50</p>
+                    }
+                </div>
+            }
+
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" formControlName="password">
+            @if(getPassword()?.invalid && getPassword()?.touched)
+            {
+                <div class="text-danger">
+                    @if(getPassword()?.errors?.['required'])
+                    {
+                        <p>This Filed Is Required</p>
+                    }
+                    @if(getPassword()?.errors?.['minlength'])
+                    {
+                        <p>Min Length Must Be More Than 8</p>
+                    }
+                    @if(getPassword()?.errors?.['maxlength'])
+                    {
+                        <p>Max Length Must Be Less Than 50</p>
+                    }
+                </div>
+            }
+          </div>
+          <div class="mb-3 ">
+            Do You Have Account ?<a routerLink="/register">Register</a>
+          </div>
+          <div class="d-grid">
+              <button class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+          </div>
+        </form>
+    </div>
+</div>
