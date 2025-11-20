@@ -35,7 +35,16 @@ export class LoginComponent {
     this._AuthService.login2(this.loginForm.value).subscribe({
       next:(res)=>
         {
-          // console.log(res.username, res.email, res.roles);
+
+          
+           Swal.fire({
+                    title: "Success",
+                    text: "Login Successfly!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+
           this._router.navigate(['/blogs-list'])
 
         },
