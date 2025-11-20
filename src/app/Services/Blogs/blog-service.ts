@@ -35,20 +35,24 @@ export class BlogService {
       })
     })
   }
-  updateBlog(id:number , blog:BlogCreateDTO):Observable<void>
+
+  updateBlog(id:number , blog:BlogCreateDTO):Observable<string>
   {
-    return this._httpClient.put<void>(`${environment.baseURL}/Posts/${id}` , blog , {
+    return this._httpClient.put(`${environment.baseURL}/Posts/${id}` , blog , {
       headers : new HttpHeaders ({
         "Authorization" : `Bearer ${this.token}`
-      })
+      }),
+      responseType : 'text'
     })
   }
+
   deleteBlog(id:number):Observable<string>
   {
-    return this._httpClient.delete<string>(`${environment.baseURL}/Posts/${id}` , {
+    return this._httpClient.delete(`${environment.baseURL}/Posts/${id}` , {
       headers : new HttpHeaders ({
         "Authorization" : `Bearer ${this.adminToken}`
-      })
+      }),
+      responseType:'text'
     })
   }
   

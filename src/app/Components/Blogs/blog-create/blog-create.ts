@@ -46,10 +46,12 @@ export class BlogCreate {
           Swal.fire({
           title: "Success",
           text: "Blog Added Successfly!",
-          icon: "success"
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500
         });
 
-        
+        this._router.navigate(['/blogs-list'])
 
         }
     })

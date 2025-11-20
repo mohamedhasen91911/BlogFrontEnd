@@ -35,7 +35,7 @@ export class LoginComponent {
     this._AuthService.login2(this.loginForm.value).subscribe({
       next:(res)=>
         {
-          console.log(res.username, res.email, res.roles);
+          // console.log(res.username, res.email, res.roles);
           this._router.navigate(['/blogs-list'])
 
         },

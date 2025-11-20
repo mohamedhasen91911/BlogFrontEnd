@@ -40,6 +40,8 @@ export class AuthService {
             // لو هتحتاجهم بعدين:
             localStorage.setItem('roles', JSON.stringify(res.roles));
             localStorage.setItem('expiresOn', res.expiresOn);
+            localStorage.setItem('username' , res.username)
+
 
             this.setAuthState(true);
           } else {
@@ -68,6 +70,7 @@ register(user: RegisterAuthDTO): Observable<AuthResponseDTO> {
           localStorage.setItem('token', res.token);
           localStorage.setItem('roles', JSON.stringify(res.roles));
           localStorage.setItem('expiresOn', res.expiresOn);
+          localStorage.setItem('username' , res.username)
           this.setAuthState(true);
         } else {
           // BACKEND RETURNED ERROR MESSAGE (BUT STATUS = 200)

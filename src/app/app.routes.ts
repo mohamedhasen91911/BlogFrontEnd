@@ -8,6 +8,7 @@ import { LoginComponent } from './Components/Auth/login-component/login-componen
 import { RegisterComponent } from './Components/Auth/register-component/register-component';
 
 export const routes: Routes = [
+    {path:'' , component:BlogsList},
     {path:'blogs-list' , component:BlogsList},
     {path:'blog-details/:id' , component:BlogDetails},
     {path:'blog-create' , component:BlogCreate},

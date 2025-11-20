@@ -3,7 +3,7 @@ import { BlogReadDTO } from '../../../Models/Blogs/blog-read-dto';
 import { BlogService } from '../../../Services/Blogs/blog-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2'
-import { DatePipe, JsonPipe } from '@angular/common';
+import { DatePipe, JsonPipe, Location } from '@angular/common';
 
 
 @Component({
@@ -18,7 +18,8 @@ blog : BlogReadDTO  = {} as BlogReadDTO
 constructor(
   private _blogService:BlogService ,
   private _activatedRoute:ActivatedRoute,
-  private _router:Router
+  private _router:Router,
+  private _location : Location
 )
 {
 
@@ -68,6 +69,18 @@ goToEdit(id :number)
 {
   this._router.navigate(['blog-edit' , id])
 }
+
+
+back()
+{
+  this._location.back();
+}
+
+
+  goToDelete(id:number)
+  {
+    this._router.navigate(['/blog-delete' , id])
+  }
 
 
 }

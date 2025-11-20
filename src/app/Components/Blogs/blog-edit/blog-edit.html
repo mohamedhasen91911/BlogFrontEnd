@@ -1,7 +1,8 @@
 
 <div class="container" >
-    <div class="d-flex vh-100 justify-content-center align-items-center">
-        <form [formGroup]="blogForm" (submit)="createNewBlog()">
+    <div class="d-flex vh-100 justify-content-center align-items-center flex-column">
+        <h3 class="bg">Edite A Blog.</h3>
+        <form [formGroup]="blogForm" (submit)="editeBlog()" class="w-100">
 
           <div class="mb-3 mt-3">
             <label for="Title" class="form-label">Title:</label>
@@ -27,7 +28,8 @@
 
           <div class="mb-3 mt-3">
             <label for="Content" class="form-label">Content:</label>
-            <input type="text" class="form-control" id="Content" placeholder="Enter Content" name="content" formControlName="content">
+            <!-- <input type="text" class="form-control" id="Content" placeholder="Enter Content" name="content" formControlName="content"> -->
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content" formControlName="content" placeholder="Enter Content"></textarea>
             @if(getContent()?.invalid&&getContent()?.touched)
             {
                 <div class="text-danger">
@@ -46,9 +48,20 @@
                 </div>
             }
           </div>
-          <div class="d-grid">
-              <button type="submit" class="btn btn-success" [disabled]="blogForm.invalid" >Edit</button>
+
+          <div class="d-flex bd-highlight">
+            <!-- <div class="p-2 w-100 bd-highlight">Flex item</div> -->
+            <button type="submit" class="btn  btn-dark btn-rounded  w-100 " [disabled]="blogForm.invalid" >Edit</button>
+            <button type="button" class="btn  btn-outline-dark btn-rounded flex-shrink-1 " (click)="back()" >Back</button>
+            <!-- <div class="p-2 flex-shrink-1 bd-highlight">Flex item</div> -->
           </div>
+
+
+          <!-- <div class="d-grid">
+              <button type="submit" class="btn  btn-dark btn-rounded" [disabled]="blogForm.invalid" >Edit</button>
+          </div> -->
+
+
         </form>
     </div>
 </div>

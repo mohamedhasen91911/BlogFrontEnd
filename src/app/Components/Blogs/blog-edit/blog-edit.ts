@@ -5,6 +5,8 @@ import { BlogService } from '../../../Services/Blogs/blog-service';
 import { BlogReadDTO } from '../../../Models/Blogs/blog-read-dto';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BlogCreate } from '../blog-create/blog-create';
+import { BlogCreateDTO } from '../../../Models/Blogs/blog-create-dto';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class BlogEdit implements OnInit {
   constructor(
     private _activatedRoute:ActivatedRoute,
     private _router : Router,
-    private _blogService:BlogService
+    private _blogService:BlogService,
+    private _location : Location
 
   )
   {
@@ -73,26 +76,37 @@ export class BlogEdit implements OnInit {
     })
   }
 
-  createNewBlog(){
-    let newBlogDTO : BlogCreate = this.blogForm.value
-        this._blogService.createBlog(this.blogForm.value).subscribe({
+  editeBlog(){
+    let newBlogDTO : BlogCreateDTO = this.blogForm.value
+        this._blogService.updateBlog(this.blog.id , newBlogDTO).subscribe
+        ({
           next:(res)=>
             {
               Swal.fire({
               title: "Success",
               text: "Blog Edited Successfly!",
-              icon: "success"
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500
             });
 
             this._router.navigate(['/blogs-list'])
-    
-            
-    
+            // console.log('success')
+          },
+          error:(err)=>
+            {
+              console.log(err)
             }
+          
         })
         {
     
         }
+  }
+
+
+  back(){
+    this._location.back()
   }
 
   getTitle()

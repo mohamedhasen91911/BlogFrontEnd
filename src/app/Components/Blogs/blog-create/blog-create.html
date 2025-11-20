@@ -1,7 +1,8 @@
 
 <div class="container" >
-    <div class="d-flex vh-100 justify-content-center align-items-center">
-        <form [formGroup]="newBlog" (submit)="createNewBlog()">
+    <div class="d-flex vh-100 justify-content-center align-items-center flex-column">
+        <h3 class="bg">Add A New Blog.</h3>
+        <form [formGroup]="newBlog" (submit)="createNewBlog()" class="w-100">
 
           <div class="mb-3 mt-3">
             <label for="Title" class="form-label">Title:</label>
@@ -23,11 +24,15 @@
                 </div>
             }
           </div>
+
+          
           
 
           <div class="mb-3 mt-3">
             <label for="Content" class="form-label">Content:</label>
-            <input type="text" class="form-control" id="Content" placeholder="Enter Content" name="content" formControlName="content">
+            <!-- <input type="text" class="form-control" id="Content" placeholder="Enter Content" name="content" formControlName="content"> -->
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content" formControlName="content" placeholder="Enter Content"></textarea>
+
             @if(getContent()?.invalid&&getContent()?.touched)
             {
                 <div class="text-danger">
@@ -47,7 +52,7 @@
             }
           </div>
           <div class="d-grid">
-              <button type="submit" class="btn btn-success" [disabled]="newBlog.invalid" >Create</button>
+              <button type="submit" class="btn  btn-dark btn-rounded" [disabled]="newBlog.invalid" >Create</button>
           </div>
         </form>
     </div>

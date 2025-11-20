@@ -48,8 +48,8 @@ export class BlogDelete implements OnInit{
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "#171717ff",
+            cancelButtonColor: "rgba(206, 206, 206, 1)",
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
@@ -58,7 +58,9 @@ export class BlogDelete implements OnInit{
                   Swal.fire({
                   title: "Deleted!",
                   text: "Your file has been deleted.",
-                  icon: "success"
+                  icon: "success",
+                  showConfirmButton: false,
+                  timer: 1500
                 }
               );
 

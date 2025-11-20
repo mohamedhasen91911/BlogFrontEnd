@@ -1,7 +1,6 @@
-{{registerForm.value | json}}
 <div class="container">
     <div class="d-flex vh-100 align-items-center justify-content-center">
-        <form [formGroup]="registerForm" (submit)="register()">
+        <form [formGroup]="registerForm" (submit)="register()" >
 
 
             <div class="mb-3">
@@ -133,10 +132,10 @@
 
 
           <div class="mb-3 ">
-            Do You Have Account ? <a routerLink="/login">Login</a>
+            Do You Have Account ? <a routerLink="/login" class="text-black">Login</a>
           </div>
           <div class="d-grid">
-              <button class="btn btn-primary" [disabled]="registerForm.invalid">Create Account</button>
+              <button class="btn  btn-dark btn-rounded" [disabled]="registerForm.invalid">Create Account</button>
           </div>
         </form>
     </div>

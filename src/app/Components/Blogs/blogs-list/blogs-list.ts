@@ -45,7 +45,7 @@ export class BlogsList implements OnInit{
   {
     this._router.navigate(['/blog-edit' , id])
   }
-  goToDelet(id:number)
+  goToDelete(id:number)
   {
     this._router.navigate(['/blog-delete' , id])
   }
