@@ -1,4 +1,5 @@
 export interface AuthResponseDTO {
+  id:string;
   email: string;
   expiresOn: string;
   isAuthenticated: boolean;

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { AuthService } from '../../../Services/Auth/auth-service';
 import Swal from 'sweetalert2'
+import { routes } from '../../../app.routes';
 
 
 @Component({
@@ -15,7 +16,10 @@ export class Navbar implements OnInit {
   isUserLogged = false
   username = ''
 
-  constructor(private _AuthService: AuthService) {
+  constructor(
+    private _AuthService: AuthService,
+    private _router:Router
+  ) {
 
   }
 
@@ -56,6 +60,13 @@ export class Navbar implements OnInit {
         }
       })
 
+  }
+
+  MyBlogs()
+  {
+    let id = localStorage.getItem('id')??""
+    
+    this._router.navigate(['/blog-list' ,id]);
   }
 
 

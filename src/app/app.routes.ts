@@ -10,6 +10,7 @@ import { RegisterComponent } from './Components/Auth/register-component/register
 export const routes: Routes = [
     {path:'' , component:BlogsList},
     {path:'blogs-list' , component:BlogsList},
+    {path:'blog-list/:userid' , component:BlogsList},
     {path:'blog-details/:id' , component:BlogDetails},
     {path:'blog-create' , component:BlogCreate},
     {path:'blog-edit/:id' , component:BlogEdit},

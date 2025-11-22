@@ -5,20 +5,32 @@ import { BlogReadDTO } from '../../Models/Blogs/blog-read-dto';
 import { environment } from '../../../environments/environment.development';
 import { BlogCreateDTO } from '../../Models/Blogs/blog-create-dto';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { AuthService } from '../Auth/auth-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
 
-  private adminToken: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtb2hhbWVkaGFzZW4yMjciLCJqdGkiOiIyMTFmZWEyZC1lMDIzLTRjNWMtOGQ4YS1hOGJiNjI1ZGYwMTQiLCJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJ1aWQiOiJhZTEzMzNkNC1iZmUzLTRhYTgtYTg5Zi0xN2ZkOGVkZjk3ZWYiLCJyb2xlcyI6WyJBZG1pbiIsIlVzZXIiXSwiZXhwIjoxNzY2MDY4OTQ0LCJpc3MiOiJTZWN1cmVBcGkiLCJhdWQiOiJTZWN1cmVBcGlVc2VyIn0.0cTDOG2hTdWiayhGdzrzeeMJiagQ8gphZCA2WCA_zVs"
-  private token :string =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtb2hhbWVkaGFzZW4yMjciLCJqdGkiOiIxMDU3ZTA0Zi00ZTVjLTRmZDItODE0OS0wNjk4NWIxODAyZGMiLCJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJ1aWQiOiJhZTEzMzNkNC1iZmUzLTRhYTgtYTg5Zi0xN2ZkOGVkZjk3ZWYiLCJyb2xlcyI6IlVzZXIiLCJleHAiOjE3NjYwNjQ4MTksImlzcyI6IlNlY3VyZUFwaSIsImF1ZCI6IlNlY3VyZUFwaVVzZXIifQ.sVnqb_GEC2370ZhahhAORktHv_mWI53sEzZ0YFnrkts"
-  constructor(private _httpClient:HttpClient)
-  {}
+  // private adminToken: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtb2hhbWVkaGFzZW4yMjciLCJqdGkiOiIyMTFmZWEyZC1lMDIzLTRjNWMtOGQ4YS1hOGJiNjI1ZGYwMTQiLCJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJ1aWQiOiJhZTEzMzNkNC1iZmUzLTRhYTgtYTg5Zi0xN2ZkOGVkZjk3ZWYiLCJyb2xlcyI6WyJBZG1pbiIsIlVzZXIiXSwiZXhwIjoxNzY2MDY4OTQ0LCJpc3MiOiJTZWN1cmVBcGkiLCJhdWQiOiJTZWN1cmVBcGlVc2VyIn0.0cTDOG2hTdWiayhGdzrzeeMJiagQ8gphZCA2WCA_zVs"
+  private token :string
+  constructor(
+    private _httpClient:HttpClient,
+    private _authService:AuthService
+  
+  )
+  {
+    this.token = _authService.getToken()
+  }
 
   getBlogs():Observable<BlogReadDTO[]>
   {
     return this._httpClient.get<BlogReadDTO[]>(`${environment.baseURL}/Posts`)
+  }
+
+  getBlogsByUserId(userid : string):Observable<BlogReadDTO[]>
+  {
+    return this._httpClient.get<BlogReadDTO[]>(`${environment.baseURL}/Posts/user/${userid}`)
   }
 
   getBlogById(id:number):Observable<BlogReadDTO>
@@ -50,7 +62,7 @@ export class BlogService {
   {
     return this._httpClient.delete(`${environment.baseURL}/Posts/${id}` , {
       headers : new HttpHeaders ({
-        "Authorization" : `Bearer ${this.adminToken}`
+        "Authorization" : `Bearer ${this.token}`
       }),
       responseType:'text'
     })

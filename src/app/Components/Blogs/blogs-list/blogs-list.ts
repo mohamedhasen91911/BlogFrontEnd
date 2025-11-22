@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogReadDTO } from '../../../Models/Blogs/blog-read-dto';
 import { BlogService } from '../../../Services/Blogs/blog-service';
-import { Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -15,18 +15,19 @@ export class BlogsList implements OnInit{
   blogs : BlogReadDTO[] = []
   constructor(
     private _blogService:BlogService,
-    private _router:Router
+    private _router:Router,
+    private _activatedRoute:ActivatedRoute
   )
   {
 
   }
 
   ngOnInit(){
+
     this._blogService.getBlogs().subscribe({
       next:(res)=>
         {
           this.blogs = res
-          // console.log(this.blogs)
         },
 
       error:(err)=>
@@ -34,6 +35,30 @@ export class BlogsList implements OnInit{
           console.log(err)
         }
     })
+
+
+    this._activatedRoute.paramMap.subscribe({
+      next:(map)=>
+        {
+          let userID = map.get('userid')
+          if(userID != null )
+            {
+              this._blogService.getBlogsByUserId(userID).subscribe({
+                next:(res)=>
+                  {
+                    console.log(res)
+                    this.blogs = res
+                  },error:(err)=>
+                    {
+                      console.log(err)
+                    }
+              })
+            }
+        }
+    })
+
+
+
   }
 
   goToDetails(id:number)

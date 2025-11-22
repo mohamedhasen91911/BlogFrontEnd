@@ -40,7 +40,8 @@ export class AuthService {
             // لو هتحتاجهم بعدين:
             localStorage.setItem('roles', JSON.stringify(res.roles));
             localStorage.setItem('expiresOn', res.expiresOn);
-            localStorage.setItem('username' , res.username)
+            localStorage.setItem('username' , res.username);
+            localStorage.setItem('id' , res.id)
 
 
             this.setAuthState(true);
@@ -71,6 +72,7 @@ register(user: RegisterAuthDTO): Observable<AuthResponseDTO> {
           localStorage.setItem('roles', JSON.stringify(res.roles));
           localStorage.setItem('expiresOn', res.expiresOn);
           localStorage.setItem('username' , res.username)
+          localStorage.setItem('id' , res.id)
           this.setAuthState(true);
         } else {
           // BACKEND RETURNED ERROR MESSAGE (BUT STATUS = 200)
@@ -87,9 +89,7 @@ register(user: RegisterAuthDTO): Observable<AuthResponseDTO> {
 
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('roles');
-    localStorage.removeItem('expiresOn');
+    localStorage.clear()
     this.setAuthState(false);
   }
 
@@ -102,7 +102,20 @@ register(user: RegisterAuthDTO): Observable<AuthResponseDTO> {
 
   setAuthState(isAuth: boolean) {
   this.isUserAuthenticated.next(isAuth);
-}
+  }
+
+  getToken():string
+  {
+    if(this.isUserAuthenticated.getValue() == true)
+     {
+      return localStorage.getItem('token')??""
+     }
+
+     return ""
+  
+  }
+
+  
 
   
 }
